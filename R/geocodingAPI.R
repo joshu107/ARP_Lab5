@@ -7,6 +7,8 @@
 devtools::use_package("httr")
 devtools::use_package("jsonlite")
 
+ua <- user_agent("https://github.com/joshu107/ARP_Lab5")
+ua
 
 geocode_api <- function(path) {
   #form API request
