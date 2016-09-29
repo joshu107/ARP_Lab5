@@ -1,0 +1,15 @@
+Package: GeoCodeAPI
+Title: Package for connecting to the Google Maos Geocoding API
+Version: 1.0
+Authors@R: person("Joshua", "Hudson", email = "joshu107@student.liu.se", role = c("aut", "cre"))
+Description: What the package does (one paragraph).
+Depends:
+    R (>= 3.2.3)
+Imports:
+    roxygen2,
+    httr,
+    jsonlite
+License: What license is it under?
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 5.0.1
