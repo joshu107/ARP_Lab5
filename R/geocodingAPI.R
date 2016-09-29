@@ -2,14 +2,11 @@
 
 #testcase = geocode_api("/maps/api/geocode/json?address=1600+Amphitheatre+Parkway,+Mountain+View,+CA&key=AIzaSyAlnsMjbJVxvOfiNO3YVAtkmgO78ah6zFk")
 
-#Directory setting for PC-room computers
-.libPaths("C:/Users/Public/Temp")
-Sys.setenv(R_LIBS_USER = "C:/Users/Public/Temp")
 #Install necessary packages
 
 devtools::use_package("httr")
 devtools::use_package("jsonlite")
-.libPaths("Z:/Documents/Semester1/AdvancedR/Lab5/ARP_Lab5/GeoCodeAPI")
+
 
 geocode_api <- function(path) {
   #form API request
@@ -24,6 +21,17 @@ geocode_api <- function(path) {
 
   parsed <- jsonlite::fromJSON(content(resp, as = "text" ), simplifyVector = FALSE)
 
+  if (http_error(resp)) {
+    stop(
+      sprintf(
+        "Google Maps Geocoding API request failed [%s]\n%s\n<%s>",
+              status_code(resp),
+              parsed$message,
+              parsed$documentation_url
+        ),
+        call. = FALSE
+      )
+  }
   #create S3 object to contain output
   structure(
     list(
